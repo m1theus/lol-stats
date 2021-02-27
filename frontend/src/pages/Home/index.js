@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { Row, Col, Card, CardBody, Badge } from 'reactstrap';
 import axios from 'axios';
 
-const SERVER_URL = process.env.SERVER_URL || 'http://localhost:1337';
+const BACKEND_URL =
+  process.env.REACT_APP_BACKEND_URL || 'http://localhost:1337';
 
 function useInterval(callback, delay) {
   const savedCallback = useRef();
@@ -31,7 +32,7 @@ function Home() {
 
   useEffect(() => {
     const fetchLiveGames = async () => {
-      const { data } = await axios.get(`${SERVER_URL}/games/live`);
+      const { data } = await axios.get(`${BACKEND_URL}/games/live`);
       setLiveGames(data);
     };
     fetchLiveGames();
@@ -39,7 +40,7 @@ function Home() {
 
   useInterval(() => {
     const fetchLiveGames = async () => {
-      const { data } = await axios.get(`${SERVER_URL}/games/live`);
+      const { data } = await axios.get(`${BACKEND_URL}/games/live`);
       setLiveGames(data);
     };
     fetchLiveGames();

@@ -3,7 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { Badge, Table } from 'reactstrap';
 import axios from 'axios';
 
-const SERVER_URL = process.env.SERVER_URL || 'http://localhost:1337';
+const BACKEND_URL =
+  process.env.REACT_APP_BACKEND_URL || 'http://localhost:1337';
 
 const formatPlayerKDA = ({ kills, deaths, assists } = {}) =>
   `${kills}/${deaths}/${assists}`;
@@ -91,13 +92,13 @@ function Game(props) {
   }, 2000);
 
   const fetchGame = async (matchId) => {
-    const { data } = await axios.get(`${SERVER_URL}/games/${matchId}`);
+    const { data } = await axios.get(`${BACKEND_URL}/games/${matchId}`);
     return data;
   };
 
   const fetchMatchMetadata = async ({ gameId, firstEvent = false }) => {
     const { data } = await axios.get(
-      `${SERVER_URL}/games/detail/${gameId}?firstEvent=${firstEvent}`
+      `${BACKEND_URL}/games/detail/${gameId}?firstEvent=${firstEvent}`
     );
     return data;
   };
