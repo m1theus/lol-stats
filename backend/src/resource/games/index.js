@@ -54,8 +54,6 @@ const liveGames = async (_request, response) => {
 const gameById = async (request, response) => {
   const detail = await fetchGameId(request.params.id);
 
-  console.log(`m=gameById detail=`, detail);
-
   if (!detail) {
     response.status(500);
     response.json({
